@@ -26,23 +26,38 @@ public class A1Jedi {
 		//go through customer's list, adding to the quantities bought array when they are bought
 				
 		int customers = scan.nextInt();
+		//looping for each customer
 		for(int i = 0; i < customers; i++)
 		{
+			boolean[] alreadyBought = new boolean[groceriesOffered];
+			//resets alreadyBought
+			for(int l = 0; l < alreadyBought.length; l++)
+			{
+				alreadyBought[l] = false;
+			}
 			// skipping the name
 			scan.next();
 			scan.next();
-			
+			// looping for the amount of different groceries the customer bought
 			int differentGroc = scan.nextInt();
 			for(int j = 0; j < differentGroc; j++)
-			{
+			{	
+				//curr = how many of a specific grocery they bought
 				int curr = scan.nextInt();
+				//currS = name of the grocery they bought
 				String currS = scan.next();
+				//loop through the grocery list to determine index to increment
 				for(int k = 0; k < names.length; k++)
 				{
 					if(currS.equals(names[k]))
 					{
 						amountBought[k] += curr;
-						customersBought[k]++;
+						if(!alreadyBought[k])
+						{
+							alreadyBought[k] = true;
+							customersBought[k]++;
+						}
+												
 					}
 				}
 			}
